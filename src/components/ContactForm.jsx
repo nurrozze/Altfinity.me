@@ -43,7 +43,7 @@ export default function ContactForm() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="glass-strong rounded-2xl p-6 md:p-8 glow-border-magenta"
+        className="glass-strong rounded-2xl p-6 md:p-8 glow-border-gold"
       >
         {formState === 'sent' ? (
           <div className="text-center py-8">
@@ -70,7 +70,7 @@ export default function ContactForm() {
                     onChange={handleChange}
                     placeholder="Your name"
                     required
-                    className="w-full bg-white/[0.03] border border-white/10 rounded-lg pl-10 pr-4 py-3 text-sm text-text-primary placeholder-text-muted outline-none focus:border-magenta-glow/50 transition-colors duration-300"
+                    className="w-full bg-white/[0.03] border border-white/10 rounded-lg pl-10 pr-4 py-3 text-sm text-text-primary placeholder-text-muted outline-none focus:border-gold/50 transition-colors duration-300"
                   />
                 </div>
               </div>
@@ -88,7 +88,7 @@ export default function ContactForm() {
                     onChange={handleChange}
                     placeholder="you@email.com"
                     required
-                    className="w-full bg-white/[0.03] border border-white/10 rounded-lg pl-10 pr-4 py-3 text-sm text-text-primary placeholder-text-muted outline-none focus:border-magenta-glow/50 transition-colors duration-300"
+                    className="w-full bg-white/[0.03] border border-white/10 rounded-lg pl-10 pr-4 py-3 text-sm text-text-primary placeholder-text-muted outline-none focus:border-gold/50 transition-colors duration-300"
                   />
                 </div>
               </div>
@@ -108,7 +108,7 @@ export default function ContactForm() {
                   placeholder="Tell us about your project..."
                   rows={4}
                   required
-                  className="w-full bg-white/[0.03] border border-white/10 rounded-lg pl-10 pr-4 py-3 text-sm text-text-primary placeholder-text-muted outline-none focus:border-magenta-glow/50 transition-colors duration-300 resize-none"
+                  className="w-full bg-white/[0.03] border border-white/10 rounded-lg pl-10 pr-4 py-3 text-sm text-text-primary placeholder-text-muted outline-none focus:border-gold/50 transition-colors duration-300 resize-none"
                 />
               </div>
             </div>
@@ -117,11 +117,11 @@ export default function ContactForm() {
               id="contact-submit"
               type="submit"
               disabled={formState === 'sending'}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 rounded-xl bg-gradient-to-r from-magenta-glow/20 to-violet-glow/20 text-text-primary font-medium text-sm hover:from-magenta-glow/30 hover:to-violet-glow/30 glow-border-magenta transition-all duration-300 disabled:opacity-60 disabled:cursor-wait"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3 rounded-xl bg-gradient-to-r from-gold/15 to-silver/10 text-text-primary font-medium text-sm hover:from-gold/25 hover:to-silver/15 glow-border-gold transition-all duration-300 disabled:opacity-60 disabled:cursor-wait"
             >
               {formState === 'sending' ? (
                 <>
-                  <div className="w-4 h-4 border-2 border-magenta-glow/30 border-t-magenta-glow rounded-full animate-spin" />
+                  <div className="w-4 h-4 border-2 border-gold/30 border-t-gold rounded-full animate-spin" />
                   Sending...
                 </>
               ) : (

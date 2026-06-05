@@ -7,31 +7,31 @@ const caseStudies = [
     title: 'Neural Search Infrastructure',
     category: 'AI Enterprise',
     description: 'Designed and deployed a large-scale neural search pipeline for a Fortune 500 financial services firm, achieving 3.7x improvement in retrieval accuracy.',
-    accent: '#00d4ff',
+    accent: '#c9a84c',
   },
   {
     title: 'DeFi Yield Protocol',
     category: 'Blockchain',
     description: 'Built a decentralized yield optimization protocol managing $12M TVL across multiple chains with automated rebalancing strategies.',
-    accent: '#8b5cf6',
+    accent: '#c0c0cc',
   },
   {
     title: 'Enterprise AI Assistant',
     category: 'AI Enterprise',
     description: 'Developed a domain-specific AI assistant for a healthcare network, reducing clinical documentation time by 40% across 200+ providers.',
-    accent: '#00d4ff',
+    accent: '#c9a84c',
   },
   {
     title: 'Tokenized Real Estate Platform',
     category: 'Blockchain',
     description: 'Architected a compliant tokenized real estate investment platform with fractional ownership, KYC/AML integration, and secondary market trading.',
-    accent: '#8b5cf6',
+    accent: '#c0c0cc',
   },
   {
     title: 'Digital Transformation Roadmap',
     category: 'Consulting',
     description: 'Led a comprehensive digital transformation initiative for a mid-market manufacturing company, modernizing operations across 8 facilities.',
-    accent: '#f472b6',
+    accent: '#e8c86a',
   },
 ]
 
@@ -74,7 +74,7 @@ export default function CaseStudies() {
 
       <div
         ref={scrollRef}
-        className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide"
+        className="flex gap-4 overflow-x-auto pb-4"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {caseStudies.map((study, i) => (

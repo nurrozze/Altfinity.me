@@ -5,24 +5,27 @@ import AISearchPreview from './AISearchPreview'
 import CryptoDashboard from './CryptoDashboard'
 
 const tabs = [
-  { id: 'ai', label: 'AI Search Preview', icon: Brain, accent: 'cyan' },
-  { id: 'crypto', label: 'Crypto Dashboard', icon: Hexagon, accent: 'violet' },
+  { id: 'ai', label: 'AI Search Preview', icon: Brain, accent: 'gold' },
+  { id: 'crypto', label: 'Crypto Dashboard', icon: Hexagon, accent: 'silver' },
 ]
 
 export default function InteractiveZone() {
   const [activeTab, setActiveTab] = useState('ai')
 
   return (
-    <section id="interactive" className="relative py-24 md:py-32">
+    <section id="interactive" className="relative py-32 md:py-44">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(180deg, #0d0d18 0%, #0a0a0f 50%, #0d0d18 100%)',
+          background: 'linear-gradient(180deg, #111114 0%, #141418 50%, #111114 100%)',
         }}
       />
 
       {/* Ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full bg-violet-glow/3 blur-3xl pointer-events-none" />
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full blur-3xl pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse, rgba(201,168,76,0.04) 0%, transparent 70%)' }}
+      />
 
       <div className="relative z-10 section-container">
         <motion.div
@@ -32,14 +35,14 @@ export default function InteractiveZone() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <p className="text-sm font-mono text-cyan-glow/80 tracking-widest uppercase mb-4">
+          <p className="text-sm font-mono text-gold/80 tracking-widest uppercase mb-4">
             Try it Now
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold gradient-text mb-4">
             The Interactive Zone
           </h2>
           <p className="text-text-secondary max-w-2xl mx-auto">
-            Experience the power of the Altfinity ecosystem firsthand. 
+            Experience the power of the Altfinity ecosystem firsthand.
             Preview our AI search engine or explore the crypto dashboard.
           </p>
         </motion.div>
@@ -62,9 +65,9 @@ export default function InteractiveZone() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ${
                     isActive
-                      ? tab.accent === 'cyan'
-                        ? 'bg-cyan-glow/15 text-cyan-glow glow-border-cyan'
-                        : 'bg-violet-glow/15 text-violet-glow glow-border-violet'
+                      ? tab.accent === 'gold'
+                        ? 'bg-gold/15 text-gold glow-border-gold'
+                        : 'bg-silver/10 text-silver glow-border-silver'
                       : 'text-text-muted hover:text-text-secondary'
                   }`}
                 >

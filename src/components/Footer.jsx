@@ -14,7 +14,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="relative border-t border-white/5" style={{ background: '#08080e' }}>
+    <footer className="relative border-t border-white/5" style={{ background: '#0d0d10' }}>
       <div className="section-container py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
         {/* Logo */}
         <a

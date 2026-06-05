@@ -101,9 +101,9 @@ export default function AISearchPreview() {
     <div className="space-y-6">
       {/* Search Bar */}
       <form onSubmit={handleSubmit} className="relative">
-        <div className="glass rounded-xl p-1 glow-border-cyan flex items-center">
+        <div className="glass rounded-xl p-1 glow-border-gold flex items-center">
           <div className="flex items-center gap-3 px-4 flex-1">
-            <Search size={20} className="text-cyan-glow/60 shrink-0" />
+            <Search size={20} className="text-gold/60 shrink-0" />
             <input
               id="ai-search-input"
               type="text"
@@ -116,7 +116,7 @@ export default function AISearchPreview() {
           <button
             type="submit"
             id="ai-search-submit"
-            className="shrink-0 bg-gradient-to-r from-cyan-glow/20 to-cyan-glow/10 hover:from-cyan-glow/30 hover:to-cyan-glow/20 text-cyan-glow px-5 py-3 rounded-lg font-medium text-sm transition-all duration-300 flex items-center gap-2"
+            className="shrink-0 bg-gradient-to-r from-gold/20 to-gold/10 hover:from-gold/30 hover:to-gold/20 text-gold px-5 py-3 rounded-lg font-medium text-sm transition-all duration-300 flex items-center gap-2"
           >
             <Sparkles size={16} />
             Search
@@ -130,7 +130,7 @@ export default function AISearchPreview() {
           <button
             key={q}
             onClick={() => handleSampleClick(q)}
-            className="text-xs px-3 py-1.5 rounded-full glass glow-border-cyan text-text-muted hover:text-cyan-glow transition-colors duration-300"
+            className="text-xs px-3 py-1.5 rounded-full glass glow-border-gold text-text-muted hover:text-gold transition-colors duration-300"
           >
             <Zap size={10} className="inline mr-1" />
             {q.length > 35 ? q.slice(0, 35) + '…' : q}
@@ -140,10 +140,10 @@ export default function AISearchPreview() {
 
       {/* Response Area */}
       {response && (
-        <div className="glass rounded-xl p-6 glow-border-cyan glow-cyan">
+        <div className="glass rounded-xl p-6 glow-border-gold glow-gold">
           <div className="flex items-center gap-2 mb-4">
-            <div className="w-2 h-2 rounded-full bg-cyan-glow animate-pulse-glow" />
-            <span className="text-xs font-mono text-cyan-glow/70">Altfinity AI Engine</span>
+            <div className="w-2 h-2 rounded-full bg-gold animate-pulse-glow" />
+            <span className="text-xs font-mono text-gold/70">Altfinity AI Engine</span>
           </div>
           <div className="text-sm text-text-secondary leading-relaxed whitespace-pre-wrap font-light">
             {response.split('**').map((part, i) =>
@@ -154,7 +154,7 @@ export default function AISearchPreview() {
               )
             )}
             {isStreaming && (
-              <span className="inline-block w-2 h-4 bg-cyan-glow/60 ml-0.5" style={{ animation: 'typing-cursor 0.8s infinite' }} />
+              <span className="inline-block w-2 h-4 bg-gold/60 ml-0.5" style={{ animation: 'typing-cursor 0.8s infinite' }} />
             )}
           </div>
         </div>

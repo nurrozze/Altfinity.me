@@ -9,10 +9,10 @@ const pillars = [
     tagline: 'Intelligence at the speed of thought',
     description:
       'Harness next-generation AI search tools designed for enterprise. Our platform delivers instant, contextual insights powered by cutting-edge language models and neural retrieval systems.',
-    accent: '#00d4ff',
-    glowClass: 'glow-cyan',
-    borderClass: 'glow-border-cyan',
-    gradientClass: 'gradient-text-cyan',
+    accent: '#c9a84c',
+    glowClass: 'glow-gold',
+    borderClass: 'glow-border-gold',
+    gradientClass: 'gradient-text-gold',
   },
   {
     icon: Hexagon,
@@ -20,10 +20,10 @@ const pillars = [
     tagline: 'Secure. Decentralized. Yours.',
     description:
       'A Web3-native cryptocurrency platform built on transparency and security. Track tokens, execute transactions, and explore decentralized finance—all from one seamless interface.',
-    accent: '#8b5cf6',
-    glowClass: 'glow-violet',
-    borderClass: 'glow-border-violet',
-    gradientClass: 'gradient-text-violet',
+    accent: '#c0c0cc',
+    glowClass: 'glow-silver',
+    borderClass: 'glow-border-silver',
+    gradientClass: 'gradient-text-silver',
   },
   {
     icon: Shield,
@@ -31,21 +31,21 @@ const pillars = [
     tagline: 'Human expertise. Digital authority.',
     description:
       'Premium consulting services at the intersection of AI, blockchain, and digital strategy. From architecture to execution, our team delivers authority-grade solutions.',
-    accent: '#f472b6',
-    glowClass: 'glow-magenta',
-    borderClass: 'glow-border-magenta',
-    gradientClass: 'gradient-text-magenta',
+    accent: '#e8c86a',
+    glowClass: 'glow-gold',
+    borderClass: 'glow-border-gold',
+    gradientClass: 'gradient-text-gold',
   },
 ]
 
 export default function Pillars() {
   return (
-    <section id="pillars" className="relative py-24 md:py-32">
+    <section id="pillars" className="relative py-32 md:py-44">
       {/* Background gradient */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(180deg, #0d0d18 0%, #121225 50%, #0d0d18 100%)',
+          background: 'linear-gradient(180deg, #111114 0%, #17161c 50%, #111114 100%)',
         }}
       />
 
@@ -57,7 +57,7 @@ export default function Pillars() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-sm font-mono text-violet-glow/80 tracking-widest uppercase mb-4">
+          <p className="text-sm font-mono text-gold/80 tracking-widest uppercase mb-4">
             The Ecosystem
           </p>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold gradient-text mb-4">

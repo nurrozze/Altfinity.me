@@ -50,7 +50,7 @@ export default function ParticleBackground() {
           if (dist < 150) {
             const alpha = (1 - dist / 150) * 0.15
             ctx.beginPath()
-            ctx.strokeStyle = `rgba(139, 92, 246, ${alpha})`
+            ctx.strokeStyle = `rgba(201, 168, 76, ${alpha})`
             ctx.lineWidth = 0.5
             ctx.moveTo(particles[i].x, particles[i].y)
             ctx.lineTo(particles[j].x, particles[j].y)
@@ -63,7 +63,7 @@ export default function ParticleBackground() {
       for (const p of particles) {
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(0, 212, 255, ${p.opacity})`
+        ctx.fillStyle = `rgba(201, 168, 76, ${p.opacity * 0.7})`
         ctx.fill()
 
         // Update position

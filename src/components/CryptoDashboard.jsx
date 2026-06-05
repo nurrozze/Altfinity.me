@@ -146,10 +146,10 @@ export default function CryptoDashboard() {
             disabled={txState !== 'idle'}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
               txState === 'idle'
-                ? 'bg-violet-glow/20 text-violet-glow hover:bg-violet-glow/30 glow-border-violet'
+                ? 'bg-gold/15 text-gold hover:bg-gold/25 glow-border-gold'
                 : txState === 'sending'
-                ? 'bg-violet-glow/10 text-violet-glow/60 cursor-wait'
-                : 'bg-success/20 text-success glow-border-violet'
+                ? 'bg-gold/8 text-gold/60 cursor-wait'
+                : 'bg-success/20 text-success glow-border-gold'
             }`}
           >
             {txState === 'idle' && (
@@ -175,9 +175,9 @@ export default function CryptoDashboard() {
 
         {/* Progress bar */}
         {txState === 'sending' && (
-          <div className="mt-3 h-1 rounded-full bg-violet-glow/10 overflow-hidden">
+          <div className="mt-3 h-1 rounded-full bg-gold/10 overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-violet-glow to-magenta-glow rounded-full"
+              className="h-full bg-gradient-to-r from-gold to-gold-light rounded-full"
               style={{
                 animation: 'shimmer 2s ease-in-out',
                 width: '100%',

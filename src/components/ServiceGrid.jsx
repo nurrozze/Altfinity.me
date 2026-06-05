@@ -6,37 +6,37 @@ const services = [
     icon: Cpu,
     title: 'AI Strategy & Consulting',
     description: 'End-to-end AI strategy from ideation to deployment.',
-    accent: '#00d4ff',
+    accent: '#c9a84c',
   },
   {
     icon: Link2,
     title: 'Blockchain Development',
     description: 'Smart contracts, DApps, and protocol architecture.',
-    accent: '#8b5cf6',
+    accent: '#c0c0cc',
   },
   {
     icon: Lightbulb,
     title: 'Digital Transformation',
     description: 'Modernize operations with cutting-edge technology.',
-    accent: '#f472b6',
+    accent: '#e8c86a',
   },
   {
     icon: BarChart3,
     title: 'Data Analytics & Insights',
     description: 'Actionable intelligence from complex datasets.',
-    accent: '#00d4ff',
+    accent: '#c9a84c',
   },
   {
     icon: FileCheck,
     title: 'Smart Contract Auditing',
     description: 'Comprehensive security audits and formal verification.',
-    accent: '#8b5cf6',
+    accent: '#c0c0cc',
   },
   {
     icon: Rocket,
     title: 'Brand & Growth Strategy',
     description: 'Strategic positioning for Web3 and AI ventures.',
-    accent: '#f472b6',
+    accent: '#e8c86a',
   },
 ]
 
@@ -57,7 +57,7 @@ export default function ServiceGrid() {
           >
             <div
               className="w-10 h-10 rounded-lg flex items-center justify-center mb-4"
-              style={{ background: `${service.accent}15` }}
+              style={{ background: `${service.accent}18` }}
             >
               <service.icon size={20} style={{ color: service.accent }} />
             </div>

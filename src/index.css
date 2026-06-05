@@ -5,27 +5,31 @@
    ============================================ */
 
 @theme {
-  /* Core Colors */
-  --color-void: #0a0a0f;
-  --color-abyss: #0d0d18;
-  --color-deep: #121225;
-  --color-surface: #1a1a35;
-  --color-surface-light: #252545;
-  --color-border: #2a2a50;
-  --color-border-light: #3a3a60;
-  --color-text-primary: #f0f0ff;
-  --color-text-secondary: #a0a0cc;
-  --color-text-muted: #6a6a99;
+  /* Backgrounds */
+  --color-void: #111114;
+  --color-abyss: #141418;
+  --color-deep: #1a1a1f;
+  --color-surface: #1f1f26;
+  --color-surface-light: #28282f;
+  --color-border: #2e2e38;
+  --color-border-light: #3a3a48;
 
-  /* Pillar Accent Colors */
-  --color-cyan-glow: #00d4ff;
-  --color-cyan-deep: #0088cc;
-  --color-violet-glow: #8b5cf6;
-  --color-violet-deep: #6d28d9;
-  --color-magenta-glow: #f472b6;
-  --color-magenta-deep: #ec4899;
+  /* Text */
+  --color-text-primary: #f2f2f0;
+  --color-text-secondary: #9a9a94;
+  --color-text-muted: #5e5e58;
 
-  /* Semantic Colors */
+  /* Gold — primary accent (logo inner triangle) */
+  --color-gold: #c9a84c;
+  --color-gold-light: #e8c86a;
+  --color-gold-deep: #9a7a28;
+
+  /* Silver — secondary accent (logo outer triangle) */
+  --color-silver: #c0c0cc;
+  --color-silver-light: #e4e4f0;
+  --color-silver-deep: #888898;
+
+  /* Semantic */
   --color-success: #10b981;
   --color-danger: #ef4444;
 
@@ -75,7 +79,7 @@ body {
 
 /* Selection */
 ::selection {
-  background: rgba(139, 92, 246, 0.3);
+  background: rgba(201, 168, 76, 0.25);
   color: var(--color-text-primary);
 }
 
@@ -84,69 +88,55 @@ body {
    ============================================ */
 
 .glass {
-  background: rgba(26, 26, 53, 0.6);
+  background: rgba(20, 20, 26, 0.55);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .glass-strong {
-  background: rgba(26, 26, 53, 0.85);
+  background: rgba(17, 17, 22, 0.82);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.10);
 }
 
+/* Primary gradient: silver → gold (matches logo) */
 .gradient-text {
-  background: linear-gradient(135deg, #00d4ff, #8b5cf6, #f472b6);
+  background: linear-gradient(135deg, #c0c0cc, #c9a84c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.gradient-text-cyan {
-  background: linear-gradient(135deg, #00d4ff, #00a3cc);
+.gradient-text-gold {
+  background: linear-gradient(135deg, #c9a84c, #e8c86a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.gradient-text-violet {
-  background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+.gradient-text-silver {
+  background: linear-gradient(135deg, #c0c0cc, #e4e4f0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.gradient-text-magenta {
-  background: linear-gradient(135deg, #f472b6, #fb7185);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.glow-gold {
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.15), 0 0 60px rgba(201, 168, 76, 0.05);
 }
 
-.glow-cyan {
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.15), 0 0 60px rgba(0, 212, 255, 0.05);
+.glow-silver {
+  box-shadow: 0 0 20px rgba(192, 192, 204, 0.12), 0 0 50px rgba(192, 192, 204, 0.04);
 }
 
-.glow-violet {
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.15), 0 0 60px rgba(139, 92, 246, 0.05);
+.glow-border-gold {
+  border: 1px solid rgba(201, 168, 76, 0.3);
 }
 
-.glow-magenta {
-  box-shadow: 0 0 20px rgba(244, 114, 182, 0.15), 0 0 60px rgba(244, 114, 182, 0.05);
-}
-
-.glow-border-cyan {
-  border: 1px solid rgba(0, 212, 255, 0.3);
-}
-
-.glow-border-violet {
-  border: 1px solid rgba(139, 92, 246, 0.3);
-}
-
-.glow-border-magenta {
-  border: 1px solid rgba(244, 114, 182, 0.3);
+.glow-border-silver {
+  border: 1px solid rgba(192, 192, 204, 0.2);
 }
 
 /* ============================================
@@ -192,7 +182,7 @@ body {
 }
 
 /* ============================================
-   CTA BUTTON
+   BUTTONS
    ============================================ */
 
 .cta-button {
@@ -200,9 +190,9 @@ body {
   padding: 14px 36px;
   font-weight: 600;
   font-size: 1rem;
-  color: white;
-  background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(139, 92, 246, 0.15));
-  border: 1px solid rgba(0, 212, 255, 0.4);
+  color: var(--color-text-primary);
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.12), rgba(192, 192, 204, 0.08));
+  border: 1px solid rgba(201, 168, 76, 0.4);
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -215,7 +205,7 @@ body {
   inset: -2px;
   border-radius: 14px;
   padding: 2px;
-  background: linear-gradient(135deg, #00d4ff, #8b5cf6, #f472b6);
+  background: linear-gradient(135deg, #c0c0cc, #c9a84c, #e8c86a);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -225,11 +215,31 @@ body {
 
 .cta-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(0, 212, 255, 0.2), 0 0 60px rgba(139, 92, 246, 0.1);
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.2), 0 0 60px rgba(201, 168, 76, 0.08);
 }
 
 .cta-button:hover::before {
   opacity: 1;
+}
+
+.cta-button-ghost {
+  position: relative;
+  padding: 14px 36px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-silver);
+  background: transparent;
+  border: 1px solid rgba(192, 192, 204, 0.3);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta-button-ghost:hover {
+  transform: translateY(-2px);
+  border-color: rgba(192, 192, 204, 0.55);
+  color: var(--color-silver-light);
+  box-shadow: 0 0 20px rgba(192, 192, 204, 0.08);
 }
 
 /* ============================================
