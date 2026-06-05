@@ -1,35 +1,26 @@
 @import "tailwindcss";
 
 /* ============================================
-   ALTFINITY DESIGN SYSTEM — Tailwind CSS v4
+   ALTFINITY DESIGN SYSTEM — Apple / Porsche
+   Pure black. Pure white. Architectural.
    ============================================ */
 
 @theme {
-  /* Backgrounds */
-  --color-void: #111114;
-  --color-abyss: #141418;
-  --color-deep: #1a1a1f;
-  --color-surface: #1f1f26;
-  --color-surface-light: #28282f;
-  --color-border: #2e2e38;
-  --color-border-light: #3a3a48;
+  /* Backgrounds — pure black system */
+  --color-void: #000000;
+  --color-abyss: #080808;
+  --color-deep: #101010;
+  --color-surface: #161616;
+  --color-surface-light: #1e1e1e;
+  --color-border: #252525;
+  --color-border-light: #333333;
 
-  /* Text */
-  --color-text-primary: #f2f2f0;
-  --color-text-secondary: #9a9a94;
-  --color-text-muted: #5e5e58;
+  /* Typography — white + titanium gray */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #8c8c8c;
+  --color-text-muted: #4a4a4a;
 
-  /* Gold — primary accent (logo inner triangle) */
-  --color-gold: #c9a84c;
-  --color-gold-light: #e8c86a;
-  --color-gold-deep: #9a7a28;
-
-  /* Silver — secondary accent (logo outer triangle) */
-  --color-silver: #c0c0cc;
-  --color-silver-light: #e4e4f0;
-  --color-silver-deep: #888898;
-
-  /* Semantic */
+  /* Semantic — financial/status only */
   --color-success: #10b981;
   --color-danger: #ef4444;
 
@@ -59,84 +50,64 @@ body {
   background-color: var(--color-void);
   color: var(--color-text-primary);
   overflow-x: hidden;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-void);
+  background: #000;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border);
-  border-radius: 4px;
+  background: #252525;
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-border-light);
+  background: #333;
 }
 
 /* Selection */
 ::selection {
-  background: rgba(201, 168, 76, 0.25);
-  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
 }
 
 /* ============================================
-   UTILITY CLASSES
+   GLASS MORPHISM
    ============================================ */
 
 .glass {
-  background: rgba(20, 20, 26, 0.55);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(10, 10, 10, 0.70);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .glass-strong {
-  background: rgba(17, 17, 22, 0.82);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Primary gradient: silver → gold (matches logo) */
-.gradient-text {
-  background: linear-gradient(135deg, #c0c0cc, #c9a84c);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* ============================================
+   TYPOGRAPHY UTILITIES
+   ============================================ */
+
+/* Section eyebrow labels — wide tracked, uppercase, muted */
+.text-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  font-weight: 500;
 }
 
-.gradient-text-gold {
-  background: linear-gradient(135deg, #c9a84c, #e8c86a);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gradient-text-silver {
-  background: linear-gradient(135deg, #c0c0cc, #e4e4f0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.glow-gold {
-  box-shadow: 0 0 20px rgba(201, 168, 76, 0.15), 0 0 60px rgba(201, 168, 76, 0.05);
-}
-
-.glow-silver {
-  box-shadow: 0 0 20px rgba(192, 192, 204, 0.12), 0 0 50px rgba(192, 192, 204, 0.04);
-}
-
-.glow-border-gold {
-  border: 1px solid rgba(201, 168, 76, 0.3);
-}
-
-.glow-border-silver {
-  border: 1px solid rgba(192, 192, 204, 0.2);
+/* Hairline section divider */
+.divider {
+  border-top: 1px solid var(--color-border);
 }
 
 /* ============================================
@@ -149,7 +120,7 @@ body {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.5; }
+  0%, 100% { opacity: 0.4; }
   50% { opacity: 1; }
 }
 
@@ -161,11 +132,6 @@ body {
 @keyframes typing-cursor {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
-}
-
-@keyframes border-rotate {
-  0% { --angle: 0deg; }
-  100% { --angle: 360deg; }
 }
 
 .animate-float {
@@ -188,62 +154,45 @@ body {
 .cta-button {
   position: relative;
   padding: 14px 36px;
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--color-text-primary);
-  background: linear-gradient(135deg, rgba(201, 168, 76, 0.12), rgba(192, 192, 204, 0.08));
-  border: 1px solid rgba(201, 168, 76, 0.4);
-  border-radius: 12px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #ffffff;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-
-.cta-button::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: 14px;
-  padding: 2px;
-  background: linear-gradient(135deg, #c0c0cc, #c9a84c, #e8c86a);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  letter-spacing: 0.02em;
+  transition: all 0.25s ease;
 }
 
 .cta-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(201, 168, 76, 0.2), 0 0 60px rgba(201, 168, 76, 0.08);
-}
-
-.cta-button:hover::before {
-  opacity: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.55);
+  transform: translateY(-1px);
 }
 
 .cta-button-ghost {
   position: relative;
   padding: 14px 36px;
-  font-weight: 600;
-  font-size: 1rem;
-  color: var(--color-silver);
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
   background: transparent;
-  border: 1px solid rgba(192, 192, 204, 0.3);
-  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  letter-spacing: 0.02em;
+  transition: all 0.25s ease;
 }
 
 .cta-button-ghost:hover {
-  transform: translateY(-2px);
-  border-color: rgba(192, 192, 204, 0.55);
-  color: var(--color-silver-light);
-  box-shadow: 0 0 20px rgba(192, 192, 204, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
 }
 
 /* ============================================
-   SECTION STYLING
+   SECTION LAYOUT
    ============================================ */
 
 .section-container {

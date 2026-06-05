@@ -5,57 +5,49 @@ import AISearchPreview from './AISearchPreview'
 import CryptoDashboard from './CryptoDashboard'
 
 const tabs = [
-  { id: 'ai', label: 'AI Search Preview', icon: Brain, accent: 'gold' },
-  { id: 'crypto', label: 'Crypto Dashboard', icon: Hexagon, accent: 'silver' },
+  { id: 'ai', label: 'AI Search', icon: Brain },
+  { id: 'crypto', label: 'Crypto Dashboard', icon: Hexagon },
 ]
 
 export default function InteractiveZone() {
   const [activeTab, setActiveTab] = useState('ai')
 
   return (
-    <section id="interactive" className="relative py-32 md:py-44">
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'linear-gradient(180deg, #111114 0%, #141418 50%, #111114 100%)',
-        }}
-      />
-
-      {/* Ambient glow */}
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] rounded-full blur-3xl pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(201,168,76,0.04) 0%, transparent 70%)' }}
-      />
-
-      <div className="relative z-10 section-container">
+    <section
+      id="interactive"
+      className="relative py-32 md:py-44"
+      style={{ background: '#000000', borderTop: '1px solid rgba(255,255,255,0.06)' }}
+    >
+      <div className="section-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <p className="text-sm font-mono text-gold/80 tracking-widest uppercase mb-4">
-            Try it Now
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold gradient-text mb-4">
+          <p className="text-label mb-5">Try it Now</p>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-5">
             The Interactive Zone
           </h2>
-          <p className="text-text-secondary max-w-2xl mx-auto">
-            Experience the power of the Altfinity ecosystem firsthand.
-            Preview our AI search engine or explore the crypto dashboard.
+          <p className="max-w-2xl mx-auto leading-relaxed" style={{ color: '#8c8c8c' }}>
+            Experience the Altfinity ecosystem firsthand. Preview our AI search engine
+            or explore the crypto dashboard.
           </p>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
           className="max-w-3xl mx-auto"
         >
-          {/* Tab Switcher */}
-          <div className="flex gap-2 mb-8 p-1 glass rounded-xl w-fit mx-auto">
+          {/* Tab switcher */}
+          <div
+            className="flex gap-1 mb-8 p-1 w-fit mx-auto rounded-xl"
+            style={{ border: '1px solid rgba(255,255,255,0.08)', background: '#161616' }}
+          >
             {tabs.map((tab) => {
               const isActive = activeTab === tab.id
               return (
@@ -63,23 +55,35 @@ export default function InteractiveZone() {
                   key={tab.id}
                   id={`tab-${tab.id}`}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ${
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-medium uppercase tracking-wider transition-all duration-200"
+                  style={
                     isActive
-                      ? tab.accent === 'gold'
-                        ? 'bg-gold/15 text-gold glow-border-gold'
-                        : 'bg-silver/10 text-silver glow-border-silver'
-                      : 'text-text-muted hover:text-text-secondary'
-                  }`}
+                      ? {
+                          background: 'rgba(255,255,255,0.08)',
+                          color: '#ffffff',
+                          border: '1px solid rgba(255,255,255,0.10)',
+                        }
+                      : { color: '#8c8c8c', border: '1px solid transparent' }
+                  }
+                  onMouseEnter={(e) => {
+                    if (!isActive) e.currentTarget.style.color = 'rgba(255,255,255,0.65)'
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive) e.currentTarget.style.color = '#8c8c8c'
+                  }}
                 >
-                  <tab.icon size={16} />
+                  <tab.icon size={14} />
                   {tab.label}
                 </button>
               )
             })}
           </div>
 
-          {/* Tab Content */}
-          <div className="glass-strong rounded-2xl p-6 md:p-8">
+          {/* Content panel */}
+          <div
+            className="rounded-2xl p-6 md:p-8"
+            style={{ border: '1px solid rgba(255,255,255,0.08)', background: '#161616' }}
+          >
             {activeTab === 'ai' && <AISearchPreview />}
             {activeTab === 'crypto' && <CryptoDashboard />}
           </div>

@@ -14,41 +14,56 @@ export default function Footer() {
   }
 
   return (
-    <footer className="relative border-t border-white/5" style={{ background: '#0d0d10' }}>
+    <footer
+      className="relative"
+      style={{ background: '#000000', borderTop: '1px solid rgba(255,255,255,0.06)' }}
+    >
       <div className="section-container py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
         {/* Logo */}
         <a
           href="#hero"
           onClick={scrollToTop}
-          className="text-xl font-bold gradient-text tracking-tight shrink-0"
+          className="text-xl font-bold text-white tracking-tight shrink-0"
         >
           Altfinity
         </a>
 
         {/* Copyright */}
-        <p className="text-xs text-text-muted text-center">
+        <p className="text-xs text-center" style={{ color: '#4a4a4a' }}>
           © 2026 Altfinity. All rights reserved.
         </p>
 
-        {/* Right: socials + back to top */}
+        {/* Socials + back to top */}
         <div className="flex items-center gap-4 shrink-0">
           {socialLinks.map(({ icon: Icon, href, label }) => (
             <a
               key={label}
               href={href}
               aria-label={label}
-              className="text-text-muted hover:text-text-primary transition-colors duration-300"
+              className="transition-colors duration-200"
+              style={{ color: '#4a4a4a' }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = '#ffffff')}
+              onMouseLeave={(e) => (e.currentTarget.style.color = '#4a4a4a')}
             >
-              <Icon size={18} />
+              <Icon size={17} />
             </a>
           ))}
 
           <button
             onClick={scrollToTop}
             aria-label="Back to top"
-            className="ml-2 w-8 h-8 rounded-lg glass flex items-center justify-center text-text-muted hover:text-text-primary transition-colors duration-300"
+            className="ml-1 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200"
+            style={{ border: '1px solid rgba(255,255,255,0.08)', color: '#4a4a4a' }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.20)'
+              e.currentTarget.style.color = '#ffffff'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'
+              e.currentTarget.style.color = '#4a4a4a'
+            }}
           >
-            <ArrowUp size={16} />
+            <ArrowUp size={15} />
           </button>
         </div>
       </div>

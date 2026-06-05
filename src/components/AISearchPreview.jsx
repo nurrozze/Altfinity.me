@@ -28,16 +28,13 @@ export default function AISearchPreview() {
   const [isStreaming, setIsStreaming] = useState(false)
   const [placeholderIdx, setPlaceholderIdx] = useState(0)
   const [placeholder, setPlaceholder] = useState('')
-
-  // Refs for cleanup
   const timerRef = useRef(null)
   const intervalRef = useRef(null)
 
-  // Typing placeholder animation — Bug 2 fix: use timerRef so cleanup always cancels the live timer
   useEffect(() => {
     const target = sampleQueries[placeholderIdx]
     let charIdx = 0
-    let direction = 1 // 1 = typing, -1 = deleting
+    let direction = 1
 
     const tick = () => {
       if (direction === 1) {
@@ -62,12 +59,10 @@ export default function AISearchPreview() {
     return () => clearTimeout(timerRef.current)
   }, [placeholderIdx])
 
-  // Cancel streaming interval on unmount — Bug 4 fix
   useEffect(() => {
     return () => clearInterval(intervalRef.current)
   }, [])
 
-  // Bug 4 fix: shared streaming helper — eliminates duplication and stores handle in ref
   const startStream = () => {
     clearInterval(intervalRef.current)
     const text = mockResponses.default
@@ -90,7 +85,6 @@ export default function AISearchPreview() {
     startStream()
   }
 
-  // Bug 3 fix: add isStreaming guard, same as handleSubmit
   const handleSampleClick = (q) => {
     if (isStreaming) return
     setQuery(q)
@@ -98,63 +92,95 @@ export default function AISearchPreview() {
   }
 
   return (
-    <div className="space-y-6">
-      {/* Search Bar */}
-      <form onSubmit={handleSubmit} className="relative">
-        <div className="glass rounded-xl p-1 glow-border-gold flex items-center">
+    <div className="space-y-5">
+      {/* Search bar */}
+      <form onSubmit={handleSubmit}>
+        <div
+          className="flex items-center rounded-xl p-1"
+          style={{ border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.02)' }}
+        >
           <div className="flex items-center gap-3 px-4 flex-1">
-            <Search size={20} className="text-gold/60 shrink-0" />
+            <Search size={18} style={{ color: 'rgba(255,255,255,0.25)', flexShrink: 0 }} />
             <input
               id="ai-search-input"
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={placeholder + '|'}
-              className="w-full bg-transparent border-none outline-none text-text-primary placeholder-text-muted py-3 text-sm md:text-base font-light"
+              className="w-full bg-transparent border-none outline-none py-3 text-sm font-light"
+              style={{ color: '#ffffff', caretColor: 'rgba(255,255,255,0.6)' }}
             />
           </div>
           <button
             type="submit"
             id="ai-search-submit"
-            className="shrink-0 bg-gradient-to-r from-gold/20 to-gold/10 hover:from-gold/30 hover:to-gold/20 text-gold px-5 py-3 rounded-lg font-medium text-sm transition-all duration-300 flex items-center gap-2"
+            className="shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-medium uppercase tracking-wider transition-all duration-200"
+            style={{
+              background: 'rgba(255,255,255,0.06)',
+              color: 'rgba(255,255,255,0.65)',
+              border: '1px solid rgba(255,255,255,0.08)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(255,255,255,0.10)'
+              e.currentTarget.style.color = '#ffffff'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(255,255,255,0.06)'
+              e.currentTarget.style.color = 'rgba(255,255,255,0.65)'
+            }}
           >
-            <Sparkles size={16} />
+            <Sparkles size={13} />
             Search
           </button>
         </div>
       </form>
 
-      {/* Sample Queries */}
+      {/* Sample query pills */}
       <div className="flex flex-wrap gap-2">
         {sampleQueries.map((q) => (
           <button
             key={q}
             onClick={() => handleSampleClick(q)}
-            className="text-xs px-3 py-1.5 rounded-full glass glow-border-gold text-text-muted hover:text-gold transition-colors duration-300"
+            className="text-xs px-3 py-1.5 rounded-full transition-colors duration-200"
+            style={{ border: '1px solid rgba(255,255,255,0.07)', color: '#4a4a4a' }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.18)'
+              e.currentTarget.style.color = 'rgba(255,255,255,0.70)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'
+              e.currentTarget.style.color = '#4a4a4a'
+            }}
           >
-            <Zap size={10} className="inline mr-1" />
-            {q.length > 35 ? q.slice(0, 35) + '…' : q}
+            <Zap size={9} className="inline mr-1 opacity-60" />
+            {q.length > 40 ? q.slice(0, 40) + '…' : q}
           </button>
         ))}
       </div>
 
-      {/* Response Area */}
+      {/* Response area */}
       {response && (
-        <div className="glass rounded-xl p-6 glow-border-gold glow-gold">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-2 h-2 rounded-full bg-gold animate-pulse-glow" />
-            <span className="text-xs font-mono text-gold/70">Altfinity AI Engine</span>
-          </div>
-          <div className="text-sm text-text-secondary leading-relaxed whitespace-pre-wrap font-light">
+        <div
+          className="pt-5 mt-1"
+          style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+        >
+          <p className="text-label mb-4">Altfinity AI Engine</p>
+          <div
+            className="text-sm leading-relaxed whitespace-pre-wrap font-light"
+            style={{ color: '#8c8c8c' }}
+          >
             {response.split('**').map((part, i) =>
               i % 2 === 1 ? (
-                <strong key={i} className="text-text-primary font-semibold">{part}</strong>
+                <strong key={i} className="text-white font-semibold">{part}</strong>
               ) : (
                 <span key={i}>{part}</span>
               )
             )}
             {isStreaming && (
-              <span className="inline-block w-2 h-4 bg-gold/60 ml-0.5" style={{ animation: 'typing-cursor 0.8s infinite' }} />
+              <span
+                className="inline-block w-[2px] h-3.5 ml-0.5 align-middle"
+                style={{ background: 'rgba(255,255,255,0.45)', animation: 'typing-cursor 0.8s infinite' }}
+              />
             )}
           </div>
         </div>

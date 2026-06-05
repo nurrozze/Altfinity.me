@@ -36,7 +36,6 @@ const tokens = [
   },
 ]
 
-// Bug 5 fix: use symbol as gradient ID to avoid collisions across instances
 function Sparkline({ data, positive, symbol }) {
   const h = 32
   const w = 80
@@ -54,7 +53,7 @@ function Sparkline({ data, positive, symbol }) {
     <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="overflow-visible">
       <defs>
         <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={color} stopOpacity="0.3" />
+          <stop offset="0%" stopColor={color} stopOpacity="0.25" />
           <stop offset="100%" stopColor={color} stopOpacity="0" />
         </linearGradient>
       </defs>
@@ -75,9 +74,7 @@ function Sparkline({ data, positive, symbol }) {
 }
 
 export default function CryptoDashboard() {
-  const [txState, setTxState] = useState('idle') // idle | sending | confirmed
-
-  // Bug 6 fix: store timer handles in refs and cancel on unmount
+  const [txState, setTxState] = useState('idle')
   const timer1Ref = useRef(null)
   const timer2Ref = useRef(null)
 
@@ -96,37 +93,51 @@ export default function CryptoDashboard() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Portfolio Balance */}
-      <div className="glass rounded-xl p-6 glow-border-violet">
+      <div
+        className="rounded-xl p-5"
+        style={{ border: '1px solid rgba(255,255,255,0.08)', background: '#1e1e1e' }}
+      >
         <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-mono text-text-muted uppercase tracking-wider">Portfolio Balance</span>
-          <span className="text-xs px-2 py-0.5 rounded-full bg-success/10 text-success font-mono">+5.3% 24h</span>
+          <span className="text-label">Portfolio Balance</span>
+          <span
+            className="text-xs px-2 py-0.5 rounded-full font-mono"
+            style={{ background: 'rgba(16,185,129,0.10)', color: '#10b981' }}
+          >
+            +5.3% 24h
+          </span>
         </div>
-        <p className="text-3xl md:text-4xl font-bold text-text-primary tracking-tight">
-          $<span className="font-mono">47,218.64</span>
+        <p className="text-3xl md:text-4xl font-bold text-white tracking-tight font-mono">
+          $47,218.64
         </p>
       </div>
 
-      {/* Token Cards Grid */}
+      {/* Token grid */}
       <div className="grid grid-cols-2 gap-3">
         {tokens.map((token) => (
           <div
             key={token.symbol}
-            className="glass rounded-xl p-4 hover:glow-border-violet transition-all duration-300 group cursor-pointer"
+            className="rounded-xl p-4 cursor-pointer transition-colors duration-200"
+            style={{ border: '1px solid rgba(255,255,255,0.07)', background: '#1e1e1e' }}
+            onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.14)')}
+            onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)')}
           >
             <div className="flex items-center justify-between mb-3">
               <div>
-                <p className="font-bold text-sm text-text-primary">{token.symbol}</p>
-                <p className="text-xs text-text-muted">{token.name}</p>
+                <p className="font-bold text-sm text-white">{token.symbol}</p>
+                <p className="text-xs" style={{ color: '#4a4a4a' }}>{token.name}</p>
               </div>
-              <div className={`flex items-center gap-0.5 text-xs font-mono ${token.positive ? 'text-success' : 'text-danger'}`}>
+              <div
+                className="flex items-center gap-0.5 text-xs font-mono"
+                style={{ color: token.positive ? '#10b981' : '#ef4444' }}
+              >
                 {token.positive ? <ArrowUpRight size={12} /> : <ArrowDownRight size={12} />}
                 {token.change}%
               </div>
             </div>
             <div className="flex items-end justify-between">
-              <p className="text-lg font-semibold font-mono text-text-primary">${token.price}</p>
+              <p className="text-base font-semibold font-mono text-white">${token.price}</p>
               <Sparkline data={token.sparkline} positive={token.positive} symbol={token.symbol} />
             </div>
           </div>
@@ -134,63 +145,52 @@ export default function CryptoDashboard() {
       </div>
 
       {/* Send Transaction */}
-      <div className="glass rounded-xl p-4 glow-border-violet">
+      <div
+        className="rounded-xl p-4"
+        style={{ border: '1px solid rgba(255,255,255,0.07)', background: '#1e1e1e' }}
+      >
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium text-text-primary">Quick Send</p>
-            <p className="text-xs text-text-muted">Send 0.5 ALT → 0x7f2e...a3b1</p>
+            <p className="text-sm font-medium text-white">Quick Send</p>
+            <p className="text-xs mt-0.5" style={{ color: '#4a4a4a' }}>
+              Send 0.5 ALT → 0x7f2e...a3b1
+            </p>
           </div>
           <button
             id="crypto-send-btn"
             onClick={handleSend}
             disabled={txState !== 'idle'}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+            className="flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium uppercase tracking-wider transition-all duration-200"
+            style={
               txState === 'idle'
-                ? 'bg-gold/15 text-gold hover:bg-gold/25 glow-border-gold'
+                ? { border: '1px solid rgba(255,255,255,0.18)', color: 'rgba(255,255,255,0.70)' }
                 : txState === 'sending'
-                ? 'bg-gold/8 text-gold/60 cursor-wait'
-                : 'bg-success/20 text-success glow-border-gold'
-            }`}
+                ? { border: '1px solid rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.30)', cursor: 'wait' }
+                : { border: '1px solid rgba(16,185,129,0.30)', color: '#10b981' }
+            }
           >
-            {txState === 'idle' && (
-              <>
-                <Send size={14} />
-                Send
-              </>
-            )}
-            {txState === 'sending' && (
-              <>
-                <Loader2 size={14} className="animate-spin" />
-                Confirming...
-              </>
-            )}
-            {txState === 'confirmed' && (
-              <>
-                <Check size={14} />
-                Confirmed!
-              </>
-            )}
+            {txState === 'idle' && <><Send size={13} />Send</>}
+            {txState === 'sending' && <><Loader2 size={13} className="animate-spin" />Confirming…</>}
+            {txState === 'confirmed' && <><Check size={13} />Confirmed</>}
           </button>
         </div>
 
-        {/* Progress bar */}
         {txState === 'sending' && (
-          <div className="mt-3 h-1 rounded-full bg-gold/10 overflow-hidden">
+          <div
+            className="mt-3 h-px overflow-hidden rounded-full"
+            style={{ background: 'rgba(255,255,255,0.08)' }}
+          >
             <div
-              className="h-full bg-gradient-to-r from-gold to-gold-light rounded-full"
-              style={{
-                animation: 'shimmer 2s ease-in-out',
-                width: '100%',
-                transition: 'width 2.5s ease-in-out',
-              }}
+              className="h-full rounded-full animate-shimmer"
+              style={{ background: 'rgba(255,255,255,0.35)', backgroundSize: '200% 100%', width: '100%' }}
             />
           </div>
         )}
 
         {txState === 'confirmed' && (
-          <div className="mt-3 flex items-center gap-2 text-xs text-success font-mono">
-            <Check size={12} />
-            Tx: 0x8f3a...d7e2 • Block #18,294,571 • 0.0021 ETH gas
+          <div className="mt-3 flex items-center gap-2 text-xs font-mono" style={{ color: '#10b981' }}>
+            <Check size={11} />
+            Tx: 0x8f3a...d7e2 · Block #18,294,571 · 0.0021 ETH gas
           </div>
         )}
       </div>

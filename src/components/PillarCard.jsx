@@ -1,72 +1,47 @@
-import { useRef } from 'react'
 import { motion } from 'framer-motion'
 
-export default function PillarCard({ icon: Icon, title, tagline, description, accent, glowClass, borderClass, gradientClass, delay = 0 }) {
-  const cardRef = useRef(null)
-
-  const handleMouseMove = (e) => {
-    const card = cardRef.current
-    if (!card) return
-    const rect = card.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
-    const rotateX = ((y - centerY) / centerY) * -8
-    const rotateY = ((x - centerX) / centerX) * 8
-
-    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`
-  }
-
-  const handleMouseLeave = () => {
-    const card = cardRef.current
-    if (card) {
-      card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale3d(1, 1, 1)'
-    }
-  }
-
+export default function PillarCard({ icon: Icon, title, tagline, description, delay = 0 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.6, delay, ease: 'easeOut' }}
+      className="group p-8 transition-colors duration-300 cursor-pointer"
+      style={{ background: '#161616' }}
+      onMouseEnter={(e) => (e.currentTarget.style.background = '#1e1e1e')}
+      onMouseLeave={(e) => (e.currentTarget.style.background = '#161616')}
     >
+      {/* Icon */}
       <div
-        ref={cardRef}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        className={`glass rounded-2xl p-8 transition-all duration-300 ease-out cursor-pointer group hover:${glowClass} hover:${borderClass}`}
-        style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
+        className="w-12 h-12 rounded-xl flex items-center justify-center mb-7"
+        style={{ border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.03)' }}
       >
-        {/* Icon */}
-        <div
-          className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${borderClass}`}
-          style={{ background: `linear-gradient(135deg, ${accent}15, ${accent}08)` }}
-        >
-          <Icon size={28} style={{ color: accent }} />
-        </div>
+        <Icon size={22} style={{ color: 'rgba(255,255,255,0.65)' }} />
+      </div>
 
-        {/* Title */}
-        <h3 className={`text-xl font-bold mb-2 ${gradientClass}`}>
-          {title}
-        </h3>
+      {/* Title */}
+      <h3 className="text-xl font-bold tracking-tight text-white mb-2">
+        {title}
+      </h3>
 
-        {/* Tagline */}
-        <p className="text-sm font-mono text-text-muted mb-4 tracking-wide">
-          {tagline}
-        </p>
+      {/* Tagline */}
+      <p className="text-xs font-mono tracking-wider uppercase mb-5" style={{ color: '#4a4a4a' }}>
+        {tagline}
+      </p>
 
-        {/* Description */}
-        <p className="text-text-secondary text-sm leading-relaxed mb-6">
-          {description}
-        </p>
+      {/* Description */}
+      <p className="text-sm leading-relaxed mb-7" style={{ color: '#8c8c8c' }}>
+        {description}
+      </p>
 
-        {/* Learn More */}
-        <div className="flex items-center gap-2 text-sm font-medium transition-all duration-300" style={{ color: accent }}>
-          <span>Learn More</span>
-          <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
-        </div>
+      {/* Learn More */}
+      <div
+        className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider transition-colors duration-200"
+        style={{ color: 'rgba(255,255,255,0.35)' }}
+      >
+        <span className="group-hover:text-white/70 transition-colors">Learn More</span>
+        <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
       </div>
     </motion.div>
   )
